@@ -2,8 +2,6 @@ applications:
 - name: tracker-registration
   path: ./applications/registration-server/build/libs/registration-server.jar
   host: registration-pal-ku-aa
-  routes:
-  - route: registration-pal-ku-aa.apps.chicken.pal.pivotal.io
   memory: 1G
   instances: 1
   services:

@@ -2,8 +2,6 @@ applications:
 - name: tracker-allocations
   path: ./applications/allocations-server/build/libs/allocations-server.jar
   host: allocations-pal-ku-aa
-  routes:
-  - route: allocations-pal-ku-aa.apps.chicken.pal.pivotal.io
   memory: 1G
   instances: 1
   env:

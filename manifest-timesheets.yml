@@ -2,8 +2,6 @@ applications:
 - name: tracker-timesheets
   path: ./applications/timesheets-server/build/libs/timesheets-server.jar
   host: timesheets-pal-ku-aa
-  routes:
-  - route: timesheets-pal-ku-aa.apps.chicken.pal.pivotal.io
   memory: 1G
   instances: 1
   env:
