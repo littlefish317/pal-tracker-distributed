@@ -1,0 +1,8 @@
+applications:
+- name: tracker-timesheets
+  path: ./platform-services/build/libs/platform-services.jar
+  host: platform-pal-ku-aa
+  memory: 1G
+  instances: 1
+  services:
+  - tracker-service-registry

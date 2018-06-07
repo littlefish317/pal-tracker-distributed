@@ -47,6 +47,14 @@ resources:
     access_key_id: {{aws-access-key-id}}
     secret_access_key: {{aws-secret-access-key}}
 
+- name: platform-artifacts
+  type: s3
+  source:
+    bucket: {{aws-bucket}}
+    regexp: pal-tracker/platform-(.*).jar
+    access_key_id: {{aws-access-key-id}}
+    secret_access_key: {{aws-secret-access-key}}
+
 - name: cf
   type: cf
   source:
@@ -80,6 +88,9 @@ jobs:
   - put: timesheets-artifacts
     params:
       file: build-output/timesheets*.jar
+  - put: platform-artifacts
+    params:
+        file: build-output/platform*.jar
   - put: version
     params:
       file: version/number
@@ -131,3 +142,15 @@ jobs:
     params:
       manifest: pal-tracker/manifest-timesheets.yml
       path: timesheets-artifacts/timesheets-server*.jar
+
+- name: deploy-platform
+  plan:
+  - get: pal-tracker
+    passed: [build]
+    trigger: true
+  - get: platform-artifacts
+    trigger: false
+  - put: cf
+    params:
+      manifest: pal-tracker/manifest-platform.yml
+      path: platform-artifacts/platform*.jar
